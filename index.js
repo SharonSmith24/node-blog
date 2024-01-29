@@ -38,10 +38,12 @@ app.get('/post/new',(req,res)=>{
 })
 
 app.post('/posts/store',async(req,res)=>{
+    const blogpost = await BlogPost.findById(req.params.id)
+    res.render('post',{blogpost})
     // model creates a new doc with browser data
-    await BlogPost.create(req.body,(error,blogpost)=>{res.redirect('/')
+    //await BlogPost.create(req.body,(error,blogpost)=>{res.redirect('/')//
     })
-})
+
 
 app.get('/post/:id',async(req,res)=>{
     const blogpost = await BlogPost.findById(req.params.id)
